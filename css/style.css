@@ -33,7 +33,8 @@ header{
 }
 header img{
     position: absolute;
-    left: 0px;
+    left: 30px;
+    height: 100%;
 }
 main{
     min-height: 700px;
@@ -47,6 +48,14 @@ main{
     main {
         height: 180vh;
         flex-direction: column; /* 縦置きにする */
+    }
+
+}
+@media (max-width: 550px) {
+    header img{
+        left: 0px;
+        height: auto;
+        width: 100%;
     }
 }
 footer{
@@ -103,10 +112,11 @@ h2{
 }
 textarea {
     width: calc(100% - 40px);
-    height: 50px; /* 高さを2行分に設定（約40px） */
+    height: 80px;
     resize: none; /* リサイズを無効にする */
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 3px;
 }
 textarea::placeholder {
     color: #888F8B; /* 任意の色を指定 */
@@ -120,6 +130,7 @@ form {
 
 label {
     cursor: pointer; /* マウスオーバー時にカーソルがポインターに変わる */
+    margin: 3px;
 }
 
 fieldset {
@@ -162,6 +173,7 @@ legend{
 .saveSetting{
     display: flex;
     justify-content: flex-end;
+    display: none;
 }
 .attention{
     font-size: small;
