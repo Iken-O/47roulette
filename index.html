@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>47roulette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+        <img src="img/title.png">
+        <h1>都道府県ルーレット</h1>
+    </header>
+    <main>
+        <!-- ルーレット本体 -->
+        <div id="roulette">
+            <p id="result"></p>
+        </div>
+        <!-- ルーレットの設定 -->
+        <section id="setting" class="redBorder">
+            <div class="wrapper">
+                <h2>設定</h2>
+                <form>
+                    <fieldset>
+                        <legend>ポインターの変更</legend>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="pointerChange" value="pointerCab">
+                            <span class="checkmark"></span>
+                            ポインターをかぶに変更
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>ホイール色の変更</legend>
+                        <label class="custom-radio">
+                            <input type="radio" name="wheelColor" value="twoTone" checked>
+                            <span class="radiomark"></span>
+                            ツートンカラー
+                        </label>
+                        <label class="custom-radio">
+                            <input type="radio" name="wheelColor" value="multiColor">
+                            <span class="radiomark"></span>
+                            マルチカラー
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>回転方法の変更</legend>
+                        <label class="custom-radio">
+                            <input type="radio" name="rotationMethod" value="wheelRotate" checked>
+                            <span class="radiomark"></span>
+                            ホイールを回転
+                        </label>
+                        <label class="custom-radio">
+                            <input type="radio" name="rotationMethod" value="pointerRotate">
+                            <span class="radiomark"></span>
+                            ポインターを回転
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>ウィンドウキャプチャ用設定</legend>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="borderVisibility" value="hide">
+                            <span class="checkmark"></span>
+                            枠線を非表示
+                        </label>
+                        <div class="colorPickerWrapper">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" name="backgroundColorChange" value="change">
+                                <span class="checkmark"></span>
+                                背景色の変更
+                            </label>
+                            <input type="color" name="" id="" value="#0000ff">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>除外リスト</legend>
+                        <textarea name="exclusionList" placeholder="除外したい番号をカンマで区切って入力してください&#13;例）44,1,32"></textarea>
+                    </fieldset>
+
+                    <div class="saveSetting">
+                        <div class="attention">
+                            <p>設定が変更されました！</br>保存してください</p>
+                        </div>
+                        <button class="saveSettingBtn">設定を保存</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="infoWrapper">
+            <p>製作：愛犬 オー</br>お問い合わせ：<a href="https://x.com/big_aphrodite">Twitter(@big_aphrodite)</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
