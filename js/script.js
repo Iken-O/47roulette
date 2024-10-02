@@ -364,7 +364,7 @@ function hideOption() {
         frontGuard.style.pointerEvents="auto"
         button.style.backgroundColor = "#B7E064";
         button.style.color = "#FFF";
-        button.textContent = "抽選中";
+        button.textContent = "抽選中...";
         button.disabled = true;
     }
 }
