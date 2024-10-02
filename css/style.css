@@ -44,9 +44,9 @@ main{
     justify-content: space-evenly;
     align-items: center; /* 垂直中央 */
 }
-@media (max-width: 1020px) {
+@media (max-width: 1115px) {
     main {
-        height: 180vh;
+        height: auto;
         flex-direction: column; /* 縦置きにする */
     }
 
@@ -94,14 +94,33 @@ h1{
 
 section{
     background-color: #FFF9EF;
-    height: 620px;
-    width: 510px;
+    height: 70vh;
+    width: calc(70vh * 510 / 620);
 }
+@media (max-width: 550px) {
+    section{
+        background-color: #FFF9EF;
+        width: 90vw;
+        height: auto;
+    }
+}
+
 #roulette,#roulette canvas{
-    height: 620px;
-    width: 510px;
     position: relative;
 }
+#roulette,#roulette canvas{
+    height: 70vh;
+    width: calc(70vh * 510 / 620);
+}
+@media (max-width: 550px) {
+    #roulette,#roulette canvas{
+        background-color: #FFF9EF;
+        min-width: 90vw;
+        width: auto;
+        height: calc(90vw * 620/510);
+    }
+}
+
 h2{
     font-size: 32px;
     width: 100%;
@@ -123,7 +142,7 @@ textarea::placeholder {
     opacity: 0.5; /* 不透明度を指定（1が完全に不透明） */
 }
 form {
-    font-size: 16px; /* フォントサイズの設定 */
+    font-size: 1rem; /* フォントサイズの設定 */
     margin-left: 20px; /* マージンの設定 */
     margin-top: 20px;
 }
@@ -206,13 +225,25 @@ legend{
     border-style: solid; /* 枠線のスタイル */
     border-color: transparent transparent transparent #FFF; /* 吹き出しの色 */
 }
-.infoWrapper{
+.infoWrapper p{
     background-color: #FFF;
     text-align: left; /* テキストを中央揃え */
-    margin-right: 50px;
     padding: 20px 150px;
     color: #888F8B;
     font-size: 20px;
+}
+.infoWrapper{
+    margin-right: 50px;
+}
+
+@media (max-width: 550px) {
+    .infoWrapper p{
+        font-size: 1em;
+        padding: 20px 50px;
+    }
+    .infoWrapper{
+        margin: 30px;
+    }
 }
 
 /*チェックボックスの設定*/
@@ -304,8 +335,17 @@ legend{
     font-size: 24px;
     outline: 4px solid #B7E064; /* 外側のボーダー */
     padding-bottom: 10px;
-    transition: 0.5s;
     border-radius: 10px;
+}
+@media (max-width: 550px) {
+    #roulette button{
+        background-color: #FFF;
+        padding: 5px 30px;
+        color: #B7E064;
+        font-size: 16px;
+        outline: 3px solid #B7E064; /* 外側のボーダー */
+        border-radius: 5px;
+    }
 }
 #roulette canvas,#roulette p{
     position: absolute;
@@ -328,6 +368,41 @@ legend{
     width: 70%;
     border-bottom: solid 5px #B7E064;
 }
+@media (max-width: 550px) {
+    #roulette p{
+        top: calc(50px*0.65);
+        font-size: calc(32*0.65px);
+        border-bottom: solid 4px #B7E064;
+    }
+}
 .colorPickerWrapper{
     display: flex;
+}
+#setting,#roulette{
+    margin: 0px 0px;
+}
+#setting{
+    overflow: scroll;
+}
+#setting::-webkit-scrollbar{
+    display: none;
+}
+#roulette{
+    margin-bottom: 0px;
+}
+@media (max-width: 1115px) {
+    #setting,#roulette{
+        margin: 80px 0px;
+    }
+    #roulette{
+        margin-bottom: 0px;
+    }
+}
+@media (max-width: 550px) {
+    #setting,#roulette{
+        margin: 20px 0px;
+    }
+    #roulette{
+        margin-bottom: 0px;
+    }
 }

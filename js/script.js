@@ -1,11 +1,13 @@
 var sketch;//出力するファイルの名前を定義
 let isRotating = false;
 let startTime = 0;
-let rotationAngle = 0; // Radians
+let rotationAngle = 0;
 let targetRotation = 0;
-const rotationDuration = 15000; // 15 seconds
-const radius = 175;
+const rotationDuration = 15000; 
+let radius = 175;
 const result = document.querySelector("#result")
+let resizeRatio;
+let startButton;
 
 let previousRotationMethod = null; // 前回の回転方法を記憶する変数
 
@@ -13,13 +15,13 @@ let previousRotationMethod = null; // 前回の回転方法を記憶する変数
 let segments = prefectures.length;
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓設定変数の受け取り↓↓↓↓↓↓↓↓↓↓↓↓↓
 
-// Declare variables to hold the values
+// default value
 let pointerChange = false;
-let wheelColor = "twoTone"; // default value
-let rotationMethod = "wheelRotate"; // default value
+let wheelColor = "twoTone";
+let rotationMethod = "wheelRotate"; 
 let borderVisibility = false;
 let backgroundColorChange = false;
-let backgroundColor = "#0000ff"; // default value
+let backgroundColor = "#0000ff";
 let exclusionList = "";
 let exclusionArray = [];
 let filteredPrefectures = [];
@@ -68,13 +70,12 @@ window.addEventListener('load', () => {
     updateValues(); // UIの更新後に値を処理
   });
 
-// Function to update variables when inputs change
+
 function updateValues() {
-    // Checkbox for pointer change
     const pointerCheckbox = document.querySelector('input[name="pointerChange"]');
     pointerChange = pointerCheckbox.checked;
 
-    // Radio buttons for wheel color
+
     const wheelColorRadios = document.querySelectorAll('input[name="wheelColor"]');
     wheelColorRadios.forEach(radio => {
         if (radio.checked) {
@@ -82,7 +83,7 @@ function updateValues() {
         }
     });
 
-    // Radio buttons for rotation method
+
     const rotationMethodRadios = document.querySelectorAll('input[name="rotationMethod"]');
     rotationMethodRadios.forEach(radio => {
         radio.addEventListener('change', () => {
@@ -100,22 +101,21 @@ function updateValues() {
         });
     });
 
-    // Checkbox for border visibility
+
     const borderCheckbox = document.querySelector('input[name="borderVisibility"]');
     borderVisibility = borderCheckbox.checked;
 
-    // Checkbox for background color change
+
     const backgroundCheckbox = document.querySelector('input[name="backgroundColorChange"]');
     backgroundColorChange = backgroundCheckbox.checked;
 
-    // Color input for background color
+
     const colorInput = document.querySelector('input[type="color"]');
     backgroundColor = colorInput.value;
 
     const exclusionTextarea = document.querySelector('textarea[name="exclusionList"]');
     exclusionList = exclusionTextarea.value;
 
-    // Log the values (optional)
     // console.log({
     //     pointerChange,
     //     wheelColor,
@@ -147,25 +147,24 @@ function updateBorder() {
     }
 }
 
-// Add event listeners to inputs to update variables on change
+
 document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
     input.addEventListener('change', updateValues);
 });
 
-// Add event listener for color input
+
 const colorInput = document.querySelector('input[type="color"]');
 colorInput.addEventListener('input', updateValues);
 
-// Add event listener for textarea to update exclusion list in real-time
+
 const exclusionTextarea = document.querySelector('textarea[name="exclusionList"]');
 exclusionTextarea.addEventListener('input', updateValues);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓受け取った変数の関数↓↓↓↓↓↓↓↓↓↓↓↓↓
 function dataProcessing() {
-    if (!exclusionList.endsWith(",")) {
-        exclusionArray = exclusionList.split(",").map(Number)
-    }
+    // if (!exclusionList.endsWith(",")) {
+        exclusionArray = exclusionList.split(",").map(Number).filter(num => num !== 0);
+    // }
     filteredPrefectures = prefectures.filter(prefecture => !exclusionArray.includes(prefecture.id));
-    console.log(filteredPrefectures.length)
     segments = filteredPrefectures.length;
 }
 
@@ -175,19 +174,37 @@ function preload() {
     img = loadImage('./img/root.png');
 }
 
+function resizeCanvasBasedOnWindow() {
+    if (window.innerWidth <= 550) {
+        // 画面横幅が550以下の場合
+        resizeCanvas(windowWidth * 0.9, windowWidth * 0.9 * 620 / 510);
+        resizeRatio = windowWidth*0.9/510;
+    } else {
+        // それ以外の場合
+        resizeCanvas(windowHeight * 0.7 * 510 / 620, windowHeight * 0.7);
+        resizeRatio =1
+    }
+    radius = 175*resizeRatio;
+}
+function windowResized() {
+    resizeCanvasBasedOnWindow();
+    createStartButton();
+}
+
 function setup() {
-    createCanvas(510, 620);
+    resizeCanvasBasedOnWindow();
     createStartButton();
 }
 
 function draw() {
+
     if (backgroundColorChange) {
         background(backgroundColor);
     } else {
         background("#FFF9EF");
     }
 
-    translate(width / 2, height / 2); // Canvas center as origin
+    translate(width / 2, height / 2);
     rotate(-PI / 4);
 
 
@@ -200,7 +217,7 @@ function draw() {
         rotate(rotationAngle);
         drawWheel();
         pop()
-        // Draw the pointer at 3 o'clock
+
         drawPointer();
     } else if (rotationMethod === "pointerRotate") {
         drawWheel();
@@ -221,10 +238,13 @@ function draw() {
 }
 
 function createStartButton() {
-    let startButton = createButton('スタート');
+    if (startButton) {
+        startButton.remove();
+    }
+    startButton = createButton('スタート');
     startButton.parent("roulette");
-    startButton.position(width / 2 - 100, height - 100, 'relative');
-    startButton.size(100, 30);
+    startButton.position(width / 2 - 100*resizeRatio, height - 100*resizeRatio, 'relative');
+    startButton.size(100*resizeRatio, 30*resizeRatio);
     startButton.mousePressed(startRotation);
 }
 
@@ -232,7 +252,7 @@ function updateRotation() {
     let elapsed = millis() - startTime;
     let progress = min(elapsed / rotationDuration, 1);
 
-    // Cubic easeOut function
+
     let eased = easeOutCubic(progress);
 
     rotationAngle = eased * targetRotation;
@@ -280,7 +300,7 @@ function drawSegmentLabel(i, angle) {
     } else if (wheelColor === "multiColor") {
         fill(textColors[0]);
     }
-    textSize(32);
+    textSize(32*resizeRatio);
     textAlign(CENTER, CENTER);
     text(filteredPrefectures[i].id, 0, 0);
     pop();
@@ -316,9 +336,9 @@ function drawPointer() {
     if (pointerChange === false) {
         noStroke();
         fill("#EB6A6E");
-        triangle(radius + 40, -20, radius + 40, 20, radius - 30, 0);
+        triangle(radius + 40*resizeRatio, -20*resizeRatio, radius + 40*resizeRatio, 20*resizeRatio, radius - 30*resizeRatio, 0);
     } else if (pointerChange === true) {
-        image(img, radius - 30, -50, 100, 100);
+        image(img, radius - 30*resizeRatio, -50*resizeRatio, 100*resizeRatio, 100*resizeRatio);
     }
 
 }
