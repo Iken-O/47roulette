@@ -241,8 +241,9 @@ function draw() {
 
     let currentPizza = getPizzaAtZero(angleInDegrees);
     let lastCurrentPizza = filteredPrefectures[currentPizza - 1].id;
+    let idWithLeadingZero = String(lastCurrentPizza).padStart(2, '0');
     let lastprefectureName = filteredPrefectures[currentPizza - 1].name;
-    result.textContent = `${lastCurrentPizza}： ${lastprefectureName}`;
+    result.textContent = `${idWithLeadingZero}： ${lastprefectureName}`;
 }
 
 function createStartButton() {
@@ -317,7 +318,8 @@ function drawSegmentLabel(i, angle) {
     }
     textSize(32 * resizeRatio);
     textAlign(CENTER, CENTER);
-    text(filteredPrefectures[i].id, 0, 0);
+    let idWithLeadingZero = String(filteredPrefectures[i].id).padStart(2, '0');
+    text(idWithLeadingZero, 0, 0);
     pop();
     // console.log(filteredPrefectures[i].id)
 }
