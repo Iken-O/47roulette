@@ -382,6 +382,7 @@ legend{
 }
 #setting{
     overflow: scroll;
+    position: relative;
 }
 #setting::-webkit-scrollbar{
     display: none;
@@ -404,4 +405,15 @@ legend{
     #roulette{
         margin-bottom: 0px;
     }
+}
+.frontGuard{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #888F8B;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.5s;
 }

@@ -3,11 +3,14 @@ let isRotating = false;
 let startTime = 0;
 let rotationAngle = 0;
 let targetRotation = 0;
-const rotationDuration = 15000; 
+const rotationDuration = 15000;
 let radius = 175;
 const result = document.querySelector("#result")
 let resizeRatio;
 let startButton;
+let frontGuard = "null"
+let button = "null"
+const buttonTexts = ["抽選中.", "抽選中..", "抽選中..."];
 
 let previousRotationMethod = null; // 前回の回転方法を記憶する変数
 
@@ -18,7 +21,7 @@ let segments = prefectures.length;
 // default value
 let pointerChange = false;
 let wheelColor = "twoTone";
-let rotationMethod = "wheelRotate"; 
+let rotationMethod = "wheelRotate";
 let borderVisibility = false;
 let backgroundColorChange = false;
 let backgroundColor = "#0000ff";
@@ -29,46 +32,48 @@ let filteredPrefectures = [];
 // 設定をローカルストレージに保存する関数
 function saveSettings() {
     const settings = {
-      pointerChange,
-      wheelColor,
-      rotationMethod,
-      borderVisibility,
-      backgroundColorChange,
-      backgroundColor,
-      exclusionList
+        pointerChange,
+        wheelColor,
+        rotationMethod,
+        borderVisibility,
+        backgroundColorChange,
+        backgroundColor,
+        exclusionList
     };
     localStorage.setItem('rouletteSettings', JSON.stringify(settings));
-  }
-  
-  // ローカルストレージから設定を読み込む関数
-  function loadSettings() {
+}
+
+// ローカルストレージから設定を読み込む関数
+function loadSettings() {
     const savedSettings = localStorage.getItem('rouletteSettings');
     if (savedSettings) {
-      const settings = JSON.parse(savedSettings);
-      pointerChange = settings.pointerChange;
-      wheelColor = settings.wheelColor;
-      rotationMethod = settings.rotationMethod;
-      borderVisibility = settings.borderVisibility;
-      backgroundColorChange = settings.backgroundColorChange;
-      backgroundColor = settings.backgroundColor;
-      exclusionList = settings.exclusionList;
-  
-      // UIを更新
-      document.querySelector('input[name="pointerChange"]').checked = pointerChange;
-      document.querySelector(`input[name="wheelColor"][value="${wheelColor}"]`).checked = true;
-      document.querySelector(`input[name="rotationMethod"][value="${rotationMethod}"]`).checked = true;
-      document.querySelector('input[name="borderVisibility"]').checked = borderVisibility;
-      document.querySelector('input[name="backgroundColorChange"]').checked = backgroundColorChange;
-      document.querySelector('input[type="color"]').value = backgroundColor;
-      document.querySelector('textarea[name="exclusionList"]').value = exclusionList;
+        const settings = JSON.parse(savedSettings);
+        pointerChange = settings.pointerChange;
+        wheelColor = settings.wheelColor;
+        rotationMethod = settings.rotationMethod;
+        borderVisibility = settings.borderVisibility;
+        backgroundColorChange = settings.backgroundColorChange;
+        backgroundColor = settings.backgroundColor;
+        exclusionList = settings.exclusionList;
+
+        // UIを更新
+        document.querySelector('input[name="pointerChange"]').checked = pointerChange;
+        document.querySelector(`input[name="wheelColor"][value="${wheelColor}"]`).checked = true;
+        document.querySelector(`input[name="rotationMethod"][value="${rotationMethod}"]`).checked = true;
+        document.querySelector('input[name="borderVisibility"]').checked = borderVisibility;
+        document.querySelector('input[name="backgroundColorChange"]').checked = backgroundColorChange;
+        document.querySelector('input[type="color"]').value = backgroundColor;
+        document.querySelector('textarea[name="exclusionList"]').value = exclusionList;
     }
-  }
+}
 
 
 window.addEventListener('load', () => {
     loadSettings();
     updateValues(); // UIの更新後に値を処理
-  });
+
+});
+
 
 
 function updateValues() {
@@ -162,7 +167,7 @@ exclusionTextarea.addEventListener('input', updateValues);
 // ↓↓↓↓↓↓↓↓↓↓↓↓↓受け取った変数の関数↓↓↓↓↓↓↓↓↓↓↓↓↓
 function dataProcessing() {
     // if (!exclusionList.endsWith(",")) {
-        exclusionArray = exclusionList.split(",").map(Number).filter(num => num !== 0);
+    exclusionArray = exclusionList.split(",").map(Number).filter(num => num !== 0);
     // }
     filteredPrefectures = prefectures.filter(prefecture => !exclusionArray.includes(prefecture.id));
     segments = filteredPrefectures.length;
@@ -178,13 +183,13 @@ function resizeCanvasBasedOnWindow() {
     if (window.innerWidth <= 550) {
         // 画面横幅が550以下の場合
         resizeCanvas(windowWidth * 0.9, windowWidth * 0.9 * 620 / 510);
-        resizeRatio = windowWidth*0.9/510;
+        resizeRatio = windowWidth * 0.9 / 510;
     } else {
         // それ以外の場合
         resizeCanvas(windowHeight * 0.7 * 510 / 620, windowHeight * 0.7);
-        resizeRatio =1
+        resizeRatio = 1
     }
-    radius = 175*resizeRatio;
+    radius = 175 * resizeRatio;
 }
 function windowResized() {
     resizeCanvasBasedOnWindow();
@@ -210,6 +215,9 @@ function draw() {
 
     if (isRotating) {
         updateRotation();
+        hideOption();
+    } else {
+        showOption();
     }
 
     if (rotationMethod === "wheelRotate") {
@@ -243,9 +251,16 @@ function createStartButton() {
     }
     startButton = createButton('スタート');
     startButton.parent("roulette");
-    startButton.position(width / 2 - 100*resizeRatio, height - 100*resizeRatio, 'relative');
-    startButton.size(100*resizeRatio, 30*resizeRatio);
+    startButton.position(width / 2 - 100 * resizeRatio, height - 100 * resizeRatio, 'relative');
+    startButton.size(100 * resizeRatio, 30 * resizeRatio);
     startButton.mousePressed(startRotation);
+
+    //ボタンが作成されたら読み込み
+    frontGuard = document.querySelector(".frontGuard");
+    button = document.querySelector('#roulette button');
+    // if (frontGuard && button) {  // null チェック
+    //     console.log(123)
+    // }
 }
 
 function updateRotation() {
@@ -300,7 +315,7 @@ function drawSegmentLabel(i, angle) {
     } else if (wheelColor === "multiColor") {
         fill(textColors[0]);
     }
-    textSize(32*resizeRatio);
+    textSize(32 * resizeRatio);
     textAlign(CENTER, CENTER);
     text(filteredPrefectures[i].id, 0, 0);
     pop();
@@ -336,10 +351,32 @@ function drawPointer() {
     if (pointerChange === false) {
         noStroke();
         fill("#EB6A6E");
-        triangle(radius + 40*resizeRatio, -20*resizeRatio, radius + 40*resizeRatio, 20*resizeRatio, radius - 30*resizeRatio, 0);
+        triangle(radius + 40 * resizeRatio, -20 * resizeRatio, radius + 40 * resizeRatio, 20 * resizeRatio, radius - 30 * resizeRatio, 0);
     } else if (pointerChange === true) {
-        image(img, radius - 30*resizeRatio, -50*resizeRatio, 100*resizeRatio, 100*resizeRatio);
+        image(img, radius - 30 * resizeRatio, -50 * resizeRatio, 100 * resizeRatio, 100 * resizeRatio);
     }
 
+}
+
+function hideOption() {
+    if (frontGuard && button) {  // null チェック
+        frontGuard.style.opacity = "0.7";
+        frontGuard.style.pointerEvents="auto"
+        button.style.backgroundColor = "#B7E064";
+        button.style.color = "#FFF";
+        button.textContent = "抽選中";
+        button.disabled = true;
+    }
+}
+
+function showOption() {
+    if (frontGuard && button) {  // null チェック
+        frontGuard.style.opacity = "0";
+        frontGuard.style.pointerEvents="none"
+        button.style.backgroundColor = "#FFF";
+        button.style.color = "#B7E064";
+        button.textContent = "スタート";
+        button.disabled = false;
+    }
 }
 new p5(sketch, "roulette");
