@@ -60,7 +60,6 @@ main{
 }
 footer{
     overflow: hidden;
-    height: 20vh;
     background-color: #D0E7FF;
     display: flex;
     align-items: center; /* 垂直中央 */
@@ -233,7 +232,7 @@ legend{
     font-size: 20px;
 }
 .infoWrapper{
-    margin-right: 50px;
+    margin: 20px 80px;
 }
 
 @media (max-width: 550px) {
@@ -242,7 +241,7 @@ legend{
         padding: 20px 50px;
     }
     .infoWrapper{
-        margin: 30px;
+        margin: 20px;
     }
 }
 
@@ -340,7 +339,7 @@ legend{
 @media (max-width: 550px) {
     #roulette button{
         background-color: #FFF;
-        padding: 5px 30px;
+        padding: 3.25px 30px;
         color: #B7E064;
         font-size: 16px;
         outline: 3px solid #B7E064; /* 外側のボーダー */
