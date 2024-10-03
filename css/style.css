@@ -1,118 +1,129 @@
-*{
+* {
     font-family: "M PLUS 1p", sans-serif;
     font-weight: 800;
     font-style: normal;
 }
+
 *, :after, :before {
     background-repeat: no-repeat;
     box-sizing: content-box;
 }
-header{
+
+header {
     overflow: hidden;
     height: 10vh;
     background-color: #D0E7FF;
-    display: flex; /* Flexboxを使用 */
-    align-items: center; /* 垂直中央 */
+    display: flex;
+    /* Flexboxを使用 */
+    align-items: center;
+    /* 垂直中央 */
     color: #888F8B;
     position: relative;
     background-image:
-    repeating-linear-gradient(
-      90deg,
-      #FFF ,
-      #FFF 1px,
-      transparent 1px,
-      transparent 32px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      #FFF ,
-      #FFF 1px,
-      transparent 1px,
-      transparent 32px
-    );
+        repeating-linear-gradient(90deg,
+            #FFF,
+            #FFF 1px,
+            transparent 1px,
+            transparent 32px),
+        repeating-linear-gradient(0deg,
+            #FFF,
+            #FFF 1px,
+            transparent 1px,
+            transparent 32px);
 }
-header img{
+
+header img {
     position: absolute;
     left: 30px;
     height: 100%;
 }
-main{
+
+main {
     min-height: 700px;
     height: 90vh;
     background-color: #FFD4D7;
-    display: flex; /* Flexboxを使用 */
+    display: flex;
+    /* Flexboxを使用 */
     justify-content: space-evenly;
-    align-items: center; /* 垂直中央 */
+    align-items: center;
+    /* 垂直中央 */
 }
+
 @media (max-width: 1115px) {
     main {
         height: auto;
-        flex-direction: column; /* 縦置きにする */
+        flex-direction: column;
+        /* 縦置きにする */
     }
 
 }
+
 @media (max-width: 550px) {
-    header img{
+    header img {
         left: 0px;
         height: auto;
         width: 100%;
     }
 }
-footer{
+
+footer {
     overflow: hidden;
     background-color: #D0E7FF;
     display: flex;
-    align-items: center; /* 垂直中央 */
+    align-items: center;
+    /* 垂直中央 */
     justify-content: flex-end;
     background-image:
-    repeating-linear-gradient(
-      90deg,
-      #FFF ,
-      #FFF 1px,
-      transparent 1px,
-      transparent 32px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      #FFF ,
-      #FFF 1px,
-      transparent 1px,
-      transparent 32px
-    );
+        repeating-linear-gradient(90deg,
+            #FFF,
+            #FFF 1px,
+            transparent 1px,
+            transparent 32px),
+        repeating-linear-gradient(0deg,
+            #FFF,
+            #FFF 1px,
+            transparent 1px,
+            transparent 32px);
 }
-footer a{
+
+footer a {
     color: #00acee;
 }
-h1{
+
+h1 {
     padding: 10px 100px 0px;
-    text-align: center; /* テキストを中央揃え */
+    text-align: center;
+    /* テキストを中央揃え */
     margin-left: 30px;
     visibility: hidden;
 }
 
 
-section{
+section {
     background-color: #FFF9EF;
     height: 70vh;
     width: calc(70vh * 510 / 620);
 }
+
 @media (max-width: 550px) {
-    section{
+    section {
         background-color: #FFF9EF;
         width: 90vw;
         height: auto;
     }
 }
 
-#roulette,#roulette canvas{
+#roulette, #roulette canvas {
     position: relative;
 }
-#roulette,#roulette canvas{
+
+#roulette, #roulette canvas {
     height: 70vh;
     width: calc(70vh * 510 / 620);
 }
+
 @media (max-width: 550px) {
-    #roulette,#roulette canvas{
+    #roulette, #roulette canvas {
         background-color: #FFF9EF;
         min-width: 90vw;
         width: auto;
@@ -120,127 +131,171 @@ section{
     }
 }
 
-h2{
+h2 {
     font-size: 32px;
     width: 100%;
     border-bottom: solid 5px #B7E064;
 }
-.wrapper{
+
+.wrapper {
     margin: 25px;
 }
+
 textarea {
     width: calc(100% - 40px);
     height: 80px;
-    resize: none; /* リサイズを無効にする */
+    resize: none;
+    /* リサイズを無効にする */
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 3px;
 }
+
 textarea::placeholder {
-    color: #888F8B; /* 任意の色を指定 */
-    opacity: 0.5; /* 不透明度を指定（1が完全に不透明） */
+    color: #888F8B;
+    /* 任意の色を指定 */
+    opacity: 0.5;
+    /* 不透明度を指定（1が完全に不透明） */
 }
+
 form {
-    font-size: 1rem; /* フォントサイズの設定 */
-    margin-left: 20px; /* マージンの設定 */
+    font-size: 1rem;
+    /* フォントサイズの設定 */
+    margin-left: 20px;
+    /* マージンの設定 */
     margin-top: 20px;
 }
 
 label {
-    cursor: pointer; /* マウスオーバー時にカーソルがポインターに変わる */
+    cursor: pointer;
+    /* マウスオーバー時にカーソルがポインターに変わる */
     margin: 3px;
 }
 
 fieldset {
-    margin-bottom: 13px; /* フィールドセットの下にマージンを設定 */
+    margin-bottom: 13px;
+    /* フィールドセットの下にマージンを設定 */
     border: none;
     background-color: #FFF;
 }
+
 fieldset:last-of-type {
-    margin-bottom: 20px; /* フィールドセットの下にマージンを設定 */
+    margin-bottom: 20px;
+    /* フィールドセットの下にマージンを設定 */
 }
-label,textarea{
+
+label, textarea {
     margin-left: 20px;
     margin-right: 20px;
 }
-legend{
+
+legend {
     background-color: #B7E064;
     color: #FFF;
     padding: 3px 20px;
     margin-left: -20px;
 }
-.saveSettingBtn{
+
+.saveSettingBtn {
     background-color: #B7E064;
     padding: 5px 45px;
     color: #FFF;
     font-size: 24px;
-    border: 2px solid #FFF; /* 内側のボーダー */
-    outline: 4px solid #B7E064; /* 外側のボーダー */
+    border: 2px solid #FFF;
+    /* 内側のボーダー */
+    outline: 4px solid #B7E064;
+    /* 外側のボーダー */
     margin-right: 4px;
     transition: 0.5s;
     border-radius: 10px;
 }
-.saveSettingBtn:hover{
+
+.saveSettingBtn:hover {
     color: #B7E064;
     background-color: #FFF;
 }
-.redBorder{
+
+.redBorder {
     outline: 10px solid #EB6A6E;
     outline-offset: -10px;
 }
-.saveSetting{
+
+.saveSetting {
     display: flex;
     justify-content: flex-end;
     display: none;
 }
-.attention{
+
+.attention {
     font-size: small;
     background-color: #FFF;
     margin-right: 20px;
     display: flex;
     position: relative;
     border: 2px solid #B7E064;
-    display: flex; /* Flexboxを使用 */
-    align-items: center; /* 垂直中央 */
+    display: flex;
+    /* Flexboxを使用 */
+    align-items: center;
+    /* 垂直中央 */
     padding: 0px 20px;
 }
+
 .attention::before {
     content: '';
-    position: absolute; /* 吹き出しを絶対位置に設定 */
-    top: 50%; /* 上からの位置 */
-    left: 100%; /* 右側に配置 */
-    margin-top: -12px; /* 垂直中央に配置 */
-    border-width: 12px; /* 三角形のサイズ */
-    border-style: solid; /* 枠線のスタイル */
-    border-color: transparent transparent transparent #B7E064; /* 吹き出しの色 */
+    position: absolute;
+    /* 吹き出しを絶対位置に設定 */
+    top: 50%;
+    /* 上からの位置 */
+    left: 100%;
+    /* 右側に配置 */
+    margin-top: -12px;
+    /* 垂直中央に配置 */
+    border-width: 12px;
+    /* 三角形のサイズ */
+    border-style: solid;
+    /* 枠線のスタイル */
+    border-color: transparent transparent transparent #B7E064;
+    /* 吹き出しの色 */
 }
+
 .attention::after {
     content: '';
-    position: absolute; /* 吹き出しを絶対位置に設定 */
-    top: 50%; /* 上からの位置 */
-    left: 100%; /* 右側に配置 */
-    margin-top: -9px; /* 垂直中央に配置 */
-    border-width: 9px; /* 三角形のサイズ */
-    border-style: solid; /* 枠線のスタイル */
-    border-color: transparent transparent transparent #FFF; /* 吹き出しの色 */
+    position: absolute;
+    /* 吹き出しを絶対位置に設定 */
+    top: 50%;
+    /* 上からの位置 */
+    left: 100%;
+    /* 右側に配置 */
+    margin-top: -9px;
+    /* 垂直中央に配置 */
+    border-width: 9px;
+    /* 三角形のサイズ */
+    border-style: solid;
+    /* 枠線のスタイル */
+    border-color: transparent transparent transparent #FFF;
+    /* 吹き出しの色 */
 }
-.infoWrapper p{
+
+.infoWrapper p {
     background-color: #FFF;
-    text-align: left; /* テキストを中央揃え */
+    text-align: left;
+    /* テキストを中央揃え */
     padding: 20px 150px;
     color: #888F8B;
     font-size: 20px;
 }
-.infoWrapper{
+
+.infoWrapper {
     margin: 20px 80px;
 }
 
 @media (max-width: 550px) {
-    .infoWrapper p{
+    .infoWrapper p {
         font-size: 1em;
         padding: 20px 50px;
     }
-    .infoWrapper{
+
+    .infoWrapper {
         margin: 20px;
     }
 }
@@ -249,115 +304,157 @@ legend{
 .custom-checkbox {
     display: flex;
     align-items: center;
-  }
-  
-  .custom-checkbox input {
-    display: none; /* チェックボックスを隠す */
-  }
-  
-  .checkmark {
-    width: 15px; /* チェックマークの幅 */
-    height: 15px; /* チェックマークの高さ */
-    border: 2px solid #B7E064; /* ボーダーの色 */
-    border-radius: 3px; /* 角を丸く */
-    margin-right: 10px; /* テキストとの間のスペース */
+}
+
+.custom-checkbox input {
+    display: none;
+    /* チェックボックスを隠す */
+}
+
+.checkmark {
+    width: 15px;
+    /* チェックマークの幅 */
+    height: 15px;
+    /* チェックマークの高さ */
+    border: 2px solid #B7E064;
+    /* ボーダーの色 */
+    border-radius: 3px;
+    /* 角を丸く */
+    margin-right: 10px;
+    /* テキストとの間のスペース */
     position: relative;
-    cursor: pointer; /* カーソルをポインタに */
-  }
-  
-  .custom-checkbox input:checked + .checkmark {
-    background-color: #B7E064; /* チェックボックスの背景色 */
-    border-color: #B7E064; /* ボーダーの色 */
-  }
-  
-  .checkmark::after {
+    cursor: pointer;
+    /* カーソルをポインタに */
+}
+
+.custom-checkbox input:checked+.checkmark {
+    background-color: #B7E064;
+    /* チェックボックスの背景色 */
+    border-color: #B7E064;
+    /* ボーダーの色 */
+}
+
+.checkmark::after {
     content: "";
-    display: none; /* デフォルトは非表示 */
+    display: none;
+    /* デフォルトは非表示 */
     position: absolute;
-    left: 3px; /* チェックマークの位置 */
-    top: 0px; /* チェックマークの位置 */
-    width: 5px; /* チェックマークの幅 */
-    height: 10px; /* チェックマークの高さ */
-    border: solid white; /* チェックマークの色 */
-    border-width: 0 3px 3px 0; /* チェックマークの形状 */
-    transform: rotate(45deg); /* チェックマークを回転 */
-  }
-  
-  .custom-checkbox input:checked + .checkmark::after {
-    display: block; /* チェックが入ったら表示 */
-  }
+    left: 3px;
+    /* チェックマークの位置 */
+    top: 0px;
+    /* チェックマークの位置 */
+    width: 5px;
+    /* チェックマークの幅 */
+    height: 10px;
+    /* チェックマークの高さ */
+    border: solid white;
+    /* チェックマークの色 */
+    border-width: 0 3px 3px 0;
+    /* チェックマークの形状 */
+    transform: rotate(45deg);
+    /* チェックマークを回転 */
+}
+
+.custom-checkbox input:checked+.checkmark::after {
+    display: block;
+    /* チェックが入ったら表示 */
+}
+
 /* ラジオボタンの設定 */
 .custom-radio {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .custom-radio input {
-  display: none; /* ラジオボタンを隠す */
+    display: none;
+    /* ラジオボタンを隠す */
 }
 
 .radiomark {
-  width: 15px; /* ラジオボタンの幅 */
-  height: 15px; /* ラジオボタンの高さ */
-  border: 2px solid #B7E064; /* ボーダーの色 */
-  border-radius: 50%; /* 丸い形 */
-  margin-right: 5px; /* テキストとの間のスペース */
-  position: relative;
-  cursor: pointer; /* カーソルをポインタに */
+    width: 15px;
+    /* ラジオボタンの幅 */
+    height: 15px;
+    /* ラジオボタンの高さ */
+    border: 2px solid #B7E064;
+    /* ボーダーの色 */
+    border-radius: 50%;
+    /* 丸い形 */
+    margin-right: 5px;
+    /* テキストとの間のスペース */
+    position: relative;
+    cursor: pointer;
+    /* カーソルをポインタに */
 }
 
-.custom-radio input:checked + .radiomark {
-  background-color: #FFF; /* チェックされたときの背景色 */
-  border-color: #B7E064; /* チェックされたときのボーダーの色 */
+.custom-radio input:checked+.radiomark {
+    background-color: #FFF;
+    /* チェックされたときの背景色 */
+    border-color: #B7E064;
+    /* チェックされたときのボーダーの色 */
 }
 
 .radiomark::after {
-  content: "";
-  display: none; /* デフォルトは非表示 */
-  position: absolute;
-  left: 2px; /* 中の丸の位置 */
-  top: 2px; /* 中の丸の位置 */
-  width: 11px; /* 中の丸の幅 */
-  height: 11px; /* 中の丸の高さ */
-  border-radius: 50%; /* 丸くする */
-  background-color: #B7E064; /* 中の丸の色 */
+    content: "";
+    display: none;
+    /* デフォルトは非表示 */
+    position: absolute;
+    left: 2px;
+    /* 中の丸の位置 */
+    top: 2px;
+    /* 中の丸の位置 */
+    width: 11px;
+    /* 中の丸の幅 */
+    height: 11px;
+    /* 中の丸の高さ */
+    border-radius: 50%;
+    /* 丸くする */
+    background-color: #B7E064;
+    /* 中の丸の色 */
 }
 
-.custom-radio input:checked + .radiomark::after {
-  display: block; /* チェックが入ったら表示 */
+.custom-radio input:checked+.radiomark::after {
+    display: block;
+    /* チェックが入ったら表示 */
 }
 
-#roulette button{
+#roulette button {
     background-color: #FFF;
     padding: 5px 45px;
     color: #B7E064;
     font-size: 24px;
-    outline: 4px solid #B7E064; /* 外側のボーダー */
+    outline: 4px solid #B7E064;
+    /* 外側のボーダー */
     padding-bottom: 10px;
     border-radius: 10px;
 }
+
 @media (max-width: 550px) {
-    #roulette button{
+    #roulette button {
         background-color: #FFF;
         padding: 3.25px 30px;
         color: #B7E064;
         font-size: 16px;
-        outline: 3px solid #B7E064; /* 外側のボーダー */
+        outline: 3px solid #B7E064;
+        /* 外側のボーダー */
         border-radius: 5px;
     }
 }
-#roulette canvas,#roulette p{
+
+#roulette canvas, #roulette p {
     position: absolute;
     top: 0px;
     left: 0px;
     z-index: -1;
 }
-#roulette{
+
+#roulette {
     /* outline: 10px solid #EB6A6E; */
     outline-offset: -10px;
     z-index: 2;
 }
-#roulette p{
+
+#roulette p {
     z-index: 1;
     left: 50%;
     top: 50px;
@@ -367,46 +464,57 @@ legend{
     width: 70%;
     border-bottom: solid 5px #B7E064;
 }
+
 @media (max-width: 550px) {
-    #roulette p{
+    #roulette p {
         top: calc(50px*0.65);
         font-size: calc(32*0.65px);
         border-bottom: solid 4px #B7E064;
     }
 }
-.colorPickerWrapper{
+
+.colorPickerWrapper {
     display: flex;
 }
-#setting,#roulette{
+
+#setting, #roulette {
     margin: 0px 0px;
 }
-#setting{
+
+#setting {
     overflow: scroll;
     position: relative;
 }
-#setting::-webkit-scrollbar{
+
+#setting::-webkit-scrollbar {
     display: none;
 }
-#roulette{
+
+#roulette {
     margin-bottom: 0px;
 }
+
 @media (max-width: 1115px) {
-    #setting,#roulette{
+    #setting, #roulette {
         margin: 80px 0px;
     }
-    #roulette{
+
+    #roulette {
         margin-bottom: 0px;
     }
 }
+
 @media (max-width: 550px) {
-    #setting,#roulette{
+    #setting, #roulette {
         margin: 20px 0px;
     }
-    #roulette{
+
+    #roulette {
         margin-bottom: 0px;
     }
 }
-.frontGuard{
+
+.frontGuard {
     height: 100%;
     width: 100%;
     position: absolute;
