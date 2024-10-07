@@ -71,7 +71,6 @@ function loadSettings() {
 window.addEventListener('load', () => {
     loadSettings();
     updateValues(); // UIの更新後に値を処理
-
 });
 
 
@@ -187,7 +186,7 @@ function resizeCanvasBasedOnWindow() {
     } else {
         // それ以外の場合
         resizeCanvas(windowHeight * 0.7 * 510 / 620, windowHeight * 0.7);
-        resizeRatio = 1
+        resizeRatio = 0.8
     }
     radius = 175 * resizeRatio;
 }
@@ -252,8 +251,9 @@ function createStartButton() {
     }
     startButton = createButton('スタート');
     startButton.parent("roulette");
-    startButton.position(width / 2 - 100 * resizeRatio, height - 100 * resizeRatio, 'relative');
+    startButton.position(width / 2 - 105 * resizeRatio, height - 100 * resizeRatio, 'relative');
     startButton.size(100 * resizeRatio, 30 * resizeRatio);
+    startButton.style('font-size', 24 * resizeRatio + 'px'); 
     startButton.mousePressed(startRotation);
 
     //ボタンが作成されたら読み込み
