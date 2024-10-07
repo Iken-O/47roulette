@@ -381,10 +381,14 @@ legend{
     margin: 0px 0px;
 }
 #setting{
-    overflow: scroll;
     position: relative;
 }
-#setting::-webkit-scrollbar{
+.scroll{
+    overflow: scroll;
+    position: relative;
+    height: 100%;
+}
+.scroll::-webkit-scrollbar{
     display: none;
 }
 #roulette{
