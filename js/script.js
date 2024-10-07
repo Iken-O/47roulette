@@ -1,5 +1,6 @@
 var sketch;//出力するファイルの名前を定義
 let isRotating = false;
+let wasRotating = false; 
 let startTime = 0;
 let rotationAngle = 0;
 let targetRotation = 0;
@@ -219,6 +220,11 @@ function draw() {
     } else {
         showOption();
     }
+    //ルーレットが止まったとき１回だけ発動する処理
+    if (wasRotating && !isRotating) {
+        onHideToShow();
+    }
+    wasRotating = isRotating;
 
     if (rotationMethod === "wheelRotate") {
         push()
@@ -244,6 +250,18 @@ function draw() {
     let idWithLeadingZero = String(lastCurrentPizza).padStart(2, '0');
     let lastprefectureName = filteredPrefectures[currentPizza - 1].name;
     result.textContent = `${idWithLeadingZero}： ${lastprefectureName}`;
+}
+
+//ルーレットが止まったとき１回だけ発動する処理の処理部分
+//MARK: 今やってるとこ
+const resultElement=document.querySelector("#result")
+function onHideToShow() {
+    setTimeout(() => {
+        resultElement.classList.add('addAnimation');
+        setTimeout(() => {
+            resultElement.classList.remove('addAnimation');
+        }, 300);
+    }, 300);
 }
 
 function createStartButton() {

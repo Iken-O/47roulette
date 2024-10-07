@@ -462,8 +462,27 @@ legend {
     font-size: 32px;
     text-align: center;
     width: 70%;
-    border-bottom: solid 5px #B7E064;
+    /* border-bottom: solid 5px #B7E064; */
+    padding-bottom: 5px;
 }
+
+#roulette p::before {
+    background: #B7E064;
+    content: '';
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    transform-origin: left top;
+    transform: scale(1, 1);
+    transition: transform 0.4s;
+}
+#roulette p.addAnimation::before {
+    transform-origin: right top;
+    transform: scale(0, 1);
+  }
 
 @media (max-width: 550px) {
     #roulette p {
@@ -527,3 +546,4 @@ legend {
     opacity: 0;
     transition: 0.5s;
 }
+
