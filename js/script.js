@@ -354,9 +354,9 @@ function drawPointer() {
     if (pointerChange === false) {
         noStroke();
         fill("#EB6A6E");
-        triangle(radius + 25 * resizeRatio, -15 * resizeRatio, radius + 25 * resizeRatio, 15 * resizeRatio, radius - 30 * resizeRatio, 0);
+        triangle(radius + 25 * resizeRatio, -15 * resizeRatio, radius + 25 * resizeRatio, 15 * resizeRatio, radius - 25 * resizeRatio, 0);
     } else if (pointerChange === true) {
-        image(img, radius - 30 * resizeRatio, -35 * resizeRatio, 70 * resizeRatio, 70 * resizeRatio);
+        image(img, radius - 25 * resizeRatio, -35 * resizeRatio, 70 * resizeRatio, 70 * resizeRatio);
     }
 
 }
