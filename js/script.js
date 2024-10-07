@@ -186,7 +186,8 @@ function resizeCanvasBasedOnWindow() {
     } else {
         // それ以外の場合
         resizeCanvas(windowHeight * 0.7 * 510 / 620, windowHeight * 0.7);
-        resizeRatio = 0.8
+        console.log((windowHeight*0.7)/620 )
+        resizeRatio = (windowHeight*0.7)/620;
     }
     radius = 175 * resizeRatio;
 }
