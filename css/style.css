@@ -488,7 +488,11 @@ legend {
     #roulette p {
         top: calc(50px*0.65);
         font-size: calc(32*0.65px);
-        border-bottom: solid 4px #B7E064;
+    /* border-bottom: solid 5px #B7E064; */
+    padding-bottom: 4px;
+    }
+    #roulette p::before {
+        height: 4px;
     }
 }
 
