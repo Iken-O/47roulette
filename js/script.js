@@ -178,7 +178,7 @@ let img;
 function preload() {
     img = loadImage('./img/root.png');
 }
-
+//MARK: resizeCanvasBasedOnWindow
 function resizeCanvasBasedOnWindow() {
     if (window.innerWidth <= 550) {
         // 画面横幅が550以下の場合
@@ -253,7 +253,6 @@ function draw() {
 }
 
 //ルーレットが止まったとき１回だけ発動する処理の処理部分
-//MARK: 今やってるとこ
 const resultElement=document.querySelector("#result")
 function onHideToShow() {
     setTimeout(() => {
@@ -263,16 +262,18 @@ function onHideToShow() {
         }, 300);
     }, 300);
 }
-
+//MARK: CreateButton
 function createStartButton() {
     if (startButton) {
         startButton.remove();
     }
     startButton = createButton('スタート');
     startButton.parent("roulette");
-    startButton.position(width / 2 - 105 * resizeRatio, height - 100 * resizeRatio, 'relative');
+    startButton.position(width / 2 - 100 * resizeRatio, height - 100 * resizeRatio, 'relative');
     startButton.size(100 * resizeRatio, 30 * resizeRatio);
     startButton.style('font-size', 24 * resizeRatio + 'px'); 
+    startButton.style('padding', 5 * resizeRatio + 'px'+" "+50 * resizeRatio + 'px'); 
+    startButton.style('padding-bottom', 8 * resizeRatio + 'px'); 
     startButton.mousePressed(startRotation);
 
     //ボタンが作成されたら読み込み
