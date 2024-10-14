@@ -63,7 +63,7 @@ header img:last-of-type{
         /* 縦置きにする */
     }
     header img{
-        transform: translateX(0px);
+        transform: translateX(-5px);
     }
     header img:last-of-type{
         display: none;
