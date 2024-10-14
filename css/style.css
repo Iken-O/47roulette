@@ -37,6 +37,7 @@ header img {
     /* position: absolute;
     left: 30px; */
     height: 100%;
+    transform: translateX(10px);
 }
 
 main {
@@ -61,6 +62,9 @@ header img:last-of-type{
         flex-direction: column;
         /* 縦置きにする */
     }
+    header img{
+        transform: translateX(0px);
+    }
     header img:last-of-type{
         display: none;
     }
@@ -71,6 +75,7 @@ header img:last-of-type{
         left: 0px;
         height: auto;
         width: 100%;
+        transform: translateX(0px);
     }
 }
 
