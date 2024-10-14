@@ -48,6 +48,12 @@ main {
     justify-content: space-evenly;
     align-items: center;
 }
+header h1{
+    display: none;
+}
+header img:last-of-type{
+    visibility: hidden;
+}
 
 @media (max-width: 1115px) {
     main {
@@ -55,7 +61,7 @@ main {
         flex-direction: column;
         /* 縦置きにする */
     }
-    header h1{
+    header img:last-of-type{
         display: none;
     }
 }
@@ -439,7 +445,6 @@ legend {
         font-size: 16px;
         outline: 3px solid #B7E064;
         /* 外側のボーダー */
-        border-radius: 5px;
     }
 }
 
